@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance { get; private set; }
     
     public event Action<float> FOnHeatChange;
+    public event Action FOnGameOver; 
 
     private void Awake()
     {
@@ -21,5 +22,10 @@ public class EventManager : MonoBehaviour
     public void OnHeadChange(float heat)
     {
         FOnHeatChange?.Invoke(heat);
+    }
+    
+    public void OnGameOver()
+    {
+        FOnGameOver?.Invoke();
     }
 }
