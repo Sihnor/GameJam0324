@@ -37,6 +37,11 @@ public class Heating : MonoBehaviour, IHeatingUp
         {
             this.CurrentHeat -= 0.1f;
             EventManager.Instance.OnHeadChange(this.CurrentHeat);
+            
+            if (this.CurrentHeat <= 0)
+            {
+                EventManager.Instance.OnGameOver();
+            }
         }
     }
     
