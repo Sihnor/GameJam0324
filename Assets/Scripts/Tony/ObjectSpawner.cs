@@ -1,60 +1,88 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public Transform playerTransform; // Referenz zum Spielerobjekt
-    public GameObject planePrefab; // Prefab für Plane
-    public GameObject campfirePrefab; // Prefab für Campfire
-    public GameObject treePrefab; // Prefab für Tree
+    public Transform playerTransform;
+    public GameObject campfirePrefab;
+    public GameObject treePrefab;
+    public GameObject stonePrefab;
 
-    private float spawnDistanceThreshold = 20f; // Abstandsschwelle für das Löschen von Objekten
-    private float planeSpawnInterval = 1f; // Intervall für das Spawnen von Planes
-    private float campfireSpawnInterval = 10f; // Intervall für das Spawnen von Campfires
-    private float treeSpawnInterval = 5f; // Intervall für das Spawnen von Trees
+    private float spawnDistanceThreshold = 20f;
+    private float campfireSpawnInterval = 10f;
+    private float treeSpawnInterval = 5f;
+    private float stoneSpawnInterval = 8f;
 
-    private float planeTimer = 0f;
     private float campfireTimer = 0f;
     private float treeTimer = 0f;
+    private float stoneTimer = 0f;
+
+    private Vector3 previousPlayerPosition;
+    private float previousPlaneHeight;
+
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+
+    void Start()
+    {
+        // Setzt die vorherige Spielerposition beim Start auf die aktuelle Position
+        previousPlayerPosition = playerTransform.position;
+    }
 
     void Update()
     {
-        // Überprüfen, ob genug Zeit vergangen ist, um ein Objekt zu spawnen
-        planeTimer += Time.deltaTime;
+        // Überprüft, ob genügend Zeit vergangen ist, um ein Objekt zu spawnen
         campfireTimer += Time.deltaTime;
         treeTimer += Time.deltaTime;
+        stoneTimer += Time.deltaTime;
 
-        // Spawnen von Planes
-        if (planeTimer >= planeSpawnInterval)
-        {
-            SpawnObject(planePrefab, playerTransform.forward);
-            planeTimer = 0f;
-        }
-
-        // Spawnen von Campfires
-        if (campfireTimer >= campfireSpawnInterval)
+        // Spawnt Campfires
+        if (campfireTimer >= campfireSpawnInterval && spawnedObjects.Count < 20)
         {
             SpawnObject(campfirePrefab, playerTransform.forward);
-            campfireTimer = 0f;
+            campfireTimer = 1f;
         }
 
-        // Spawnen von Trees
-        if (treeTimer >= treeSpawnInterval)
+        // Spawnt Trees
+        if (treeTimer >= treeSpawnInterval && spawnedObjects.Count < 20)
         {
             SpawnObject(treePrefab, playerTransform.forward);
-            treeTimer = 0f;
+            treeTimer = 1f;
         }
+
+        // Spawnt Stones
+        if (stoneTimer >= stoneSpawnInterval && spawnedObjects.Count < 20)
+        {
+            SpawnObject(stonePrefab, playerTransform.forward);
+            stoneTimer = 1f;
+        }
+
+        previousPlayerPosition = playerTransform.position;
     }
 
+    // Spawnt ein neues Objekt anhand des übergebenen Prefabs und der Richtung
     void SpawnObject(GameObject prefab, Vector3 direction)
     {
-        // Berechnen der Position, um das Objekt zu spawnen
-        Vector3 spawnPosition = playerTransform.position + direction * 10f; // Alle 10 Felder vor dem Spieler spawnen
+        // Berechnet die Position, um das Objekt zu spawnen
+        Vector3 spawnPosition = playerTransform.position + direction * 10f;
+        spawnPosition.y = previousPlaneHeight;
         GameObject newObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
 
-        // Überprüfen, ob das Objekt zu weit entfernt ist und es gegebenenfalls zerstören
+        // Überprüft, ob das Objekt zu weit entfernt ist und es gegebenenfalls zerstört
         if (Vector3.Distance(playerTransform.position, newObject.transform.position) > spawnDistanceThreshold)
         {
             Destroy(newObject);
+        }
+        else
+        {
+            // Fügt das Objekt der Liste hinzu
+            spawnedObjects.Add(newObject);
+
+            // Überprüft, ob die maximale Anzahl überschritten wurde und gegebenenfalls das älteste Objekt zerstört
+            if (spawnedObjects.Count > 20)
+            {
+                Destroy(spawnedObjects[0]);
+                spawnedObjects.RemoveAt(0);
+            }
         }
     }
 }
