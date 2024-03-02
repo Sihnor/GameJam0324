@@ -5,27 +5,29 @@ using UnityEngine;
 
 public class CampFireDuration : MonoBehaviour
 {
-    [SerializeField] private GameObject heatSource;
-    [SerializeField] private float duration = 10.0f;
-    private float timeLeft;
+    [SerializeField] private GameObject HeatSource;
+    [SerializeField] private GameObject ParticleSystem;
+    [SerializeField] private float Duration = 10.0f;
+    private float TimeLeft;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        this.timeLeft = this.duration;
+        this.TimeLeft = this.Duration;
     }
 
     private void FixedUpdate()
     {
-        if (!this.heatSource.activeSelf) return;
+        if (!this.HeatSource.activeSelf) return;
         
-        if (this.timeLeft <= 0)
+        if (this.TimeLeft <= 0)
         {
-            this.heatSource.SetActive(false);
+            this.HeatSource.SetActive(false);
+            this.ParticleSystem.SetActive(false);
             return;
         }
         
-        this.timeLeft -= Time.fixedDeltaTime;
+        this.TimeLeft -= Time.fixedDeltaTime;
     }
 }

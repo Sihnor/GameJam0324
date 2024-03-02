@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3043451
+      value: -3.05
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
@@ -212,27 +212,27 @@ PrefabInstance:
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.127638
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.37597868
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.92662835
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
@@ -242,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 135.83
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
@@ -252,6 +252,16 @@ PrefabInstance:
     - target: {fileID: 497804550714821565, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 497804550714821565, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 790742342444116007, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5836974055009181725, guid: 238055060d388e500a4b7de045baf8b8,
@@ -271,8 +281,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8861097140957811994, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
+      propertyPath: MovementSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861097140957811994, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: CameraTransform
+      value: 
+      objectReference: {fileID: 1734692144}
+    - target: {fileID: 8861097140957811994, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
       propertyPath: MouseXSensitivity
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861097140957811994, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: MouseYSensitivity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062054484608925240, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_Drag
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9062054484608925240, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
@@ -562,6 +592,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!4 &1734692144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5836974055009181725, guid: 238055060d388e500a4b7de045baf8b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 607917640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1742785809
 GameObject:
   m_ObjectHideFlags: 0

@@ -82,6 +82,5 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = this.MoveDirection.x * transform.right + this.MoveDirection.y * transform.forward;
 
         this.PlayerRigidbody.AddForce(velocity);
-        Debug.Log(velocity);
     }
 }
