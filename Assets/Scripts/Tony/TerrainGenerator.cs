@@ -2,49 +2,51 @@ using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
 {
+    // Die Tiefe des Terrains
     public int depth = 20;
 
+    // Die Breite und Höhe des Terrains
     public int width = 256;
     public int height = 256;
 
+    // Die Skalierung des Terrains
     public float scale = 20f;
 
+    // Die horizontalen und vertikalen Offset-Werte
     public float offsetX = 100f;
     public float offsetY = 100f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Set random offset values
+        // Setze zufällige Offset-Werte beim Start
         offsetX = Random.Range(0f, 9999f);
         offsetY = Random.Range(0f, 9999f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Get the Terrain component
+        // Holen des Terrain-Komponenten
         Terrain terrain = GetComponent<Terrain>();
-        // Generate and assign new terrain data
+        // Generiere und weise neue Terrain-Daten zu
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
 
-        // Update the offset value over time
-        offsetX += Time.deltaTime * 5;
+        // Aktualisieren des Offset-Werts über die Zeit
+        //offsetX += Time.deltaTime * 5;
     }
 
-    // Generate the terrain data
+    // Generiere die Terrain-Daten
     TerrainData GenerateTerrain(TerrainData terrainData)
     {
-        // Set the heightmap resolution and size
+        // Setze die Höhenmap-Auflösung und Größe
         terrainData.heightmapResolution = width + 1;
         terrainData.size = new Vector3(width, depth, height);
 
-        // Generate the heights for the terrain
+        // Generiere die Höhen für das Terrain
         terrainData.SetHeights(0, 0, GenerateHeights());
         return terrainData;
     }
 
-    // Generate the heights for the terrain
+    // Generiere die Hoehen für das Terrain
     float[,] GenerateHeights()
     {
         float[,] heights = new float[width, height];
@@ -52,21 +54,21 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                // Calculate the height using Perlin noise
+                // Berechne die Höhe unter Verwendung von Perlin-Noise
                 heights[x, y] = CalculateHeight(x, y);
             }
         }
         return heights;
     }
 
-    // Calculate the height using Perlin noise
+    // Berechne die Höhe unter Verwendung von Perlin-Noise
     float CalculateHeight(int x, int y)
     {
-        // Calculate the coordinates based on the scale and offset values
+        // Berechne die Koordinaten basierend auf den Skalierungs- und Offset-Werten
         float xCoord = (float)x / width * scale + offsetX;
         float yCoord = (float)y / height * scale + offsetY;
 
-        // Return the Perlin noise value as the height
+        // Gib den Perlin-Noise-Wert als Höhe zurück
         return Mathf.PerlinNoise(xCoord, yCoord);
     }
 }
