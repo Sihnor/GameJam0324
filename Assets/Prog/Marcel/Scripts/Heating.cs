@@ -27,6 +27,7 @@ public class Heating : MonoBehaviour, IHeatingUp
         if (this.CurrentHeat < MaxHeat)
         {
             this.CurrentHeat += heatValue;
+            EventManager.Instance.OnHeadChange(this.CurrentHeat);
         }
     }
 
@@ -35,6 +36,7 @@ public class Heating : MonoBehaviour, IHeatingUp
         if (!this.IsHeatingUp)
         {
             this.CurrentHeat -= 0.1f;
+            EventManager.Instance.OnHeadChange(this.CurrentHeat);
         }
     }
     
