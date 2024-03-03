@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.MouseXSensitivity = GameManager.Instance.MouseSenseX;
+        this.MouseYSensitivity = GameManager.Instance.MouseSenseY;
+        this.ControllerXSensitivity = GameManager.Instance.GamepadSenseX;
+        this.ControllerYSensitivity = GameManager.Instance.GamepadSenseY;
+        
         this.MoveAction.performed += Move;
         this.LookMouseAction.started += ctx => Look(ctx, this.MouseXSensitivity, this.MouseYSensitivity);
         this.LookMouseAction.started += ctx => Look(ctx, this.ControllerXSensitivity, this.ControllerYSensitivity);
