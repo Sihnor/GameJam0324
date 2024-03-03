@@ -1,60 +1,106 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public Transform playerTransform; // Referenz zum Spielerobjekt
-    public GameObject planePrefab; // Prefab für Plane
-    public GameObject campfirePrefab; // Prefab für Campfire
-    public GameObject treePrefab; // Prefab für Tree
+    // Referenz auf den Spieler-Transform
+    public Transform playerTransform;
 
-    private float spawnDistanceThreshold = 20f; // Abstandsschwelle für das Löschen von Objekten
-    private float planeSpawnInterval = 1f; // Intervall für das Spawnen von Planes
-    private float campfireSpawnInterval = 10f; // Intervall für das Spawnen von Campfires
-    private float treeSpawnInterval = 5f; // Intervall für das Spawnen von Trees
+    // Prefabs für die zu spawnenden Objekte
+    public GameObject campfirePrefab;
+    public GameObject treePrefab;
+    public GameObject stonePrefab;
 
-    private float planeTimer = 0f;
+    // Distanzschwellwert für das Spawnen von Objekten
+    private float spawnDistanceThreshold = 20f;
+
+    // Intervalle für das Spawnen von Campfires, Bäumen und Steinen
+    private float campfireSpawnInterval = 10f;
+    private float treeSpawnInterval = 5f;
+    private float stoneSpawnInterval = 8f;
+
+    // Timer für die Intervalle
     private float campfireTimer = 0f;
     private float treeTimer = 0f;
+    private float stoneTimer = 0f;
+
+    private int Offset = 0;
+
+    // Die vorherige Position des Spielers
+    private Vector3 previousPlayerPosition;
+
+    // Liste der gespawnten Objekte
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+
+    void Start()
+    {
+        // Setze die vorherige Spielerposition auf die aktuelle Spielerposition
+        previousPlayerPosition = playerTransform.position;
+    }
 
     void Update()
     {
-        // Überprüfen, ob genug Zeit vergangen ist, um ein Objekt zu spawnen
-        planeTimer += Time.deltaTime;
+        // Inkrementiere die Timer
         campfireTimer += Time.deltaTime;
         treeTimer += Time.deltaTime;
+        stoneTimer += Time.deltaTime;
 
-        // Spawnen von Planes
-        if (planeTimer >= planeSpawnInterval)
+        // Überprüfe, ob es Zeit ist, ein Lagerfeuer zu spawnen
+        if (campfireTimer >= campfireSpawnInterval && spawnedObjects.Count < 50)
         {
-            SpawnObject(planePrefab, playerTransform.forward);
-            planeTimer = 0f;
-        }
-
-        // Spawnen von Campfires
-        if (campfireTimer >= campfireSpawnInterval)
-        {
+            // Spawnen eines Lagerfeuers
             SpawnObject(campfirePrefab, playerTransform.forward);
-            campfireTimer = 0f;
+            campfireTimer = 1f; // Zurücksetzen des Timers
         }
 
-        // Spawnen von Trees
-        if (treeTimer >= treeSpawnInterval)
+        // Überprüfe, ob es Zeit ist, einen Baum zu spawnen
+        if (treeTimer >= treeSpawnInterval && spawnedObjects.Count < 50)
         {
+            // Spawnen eines Baums
             SpawnObject(treePrefab, playerTransform.forward);
-            treeTimer = 0f;
+            treeTimer = 1f; // Zurücksetzen des Timers
         }
+
+        // Überprüfe, ob es Zeit ist, einen Stein zu spawnen
+        if (stoneTimer >= stoneSpawnInterval && spawnedObjects.Count < 50)
+        {
+            // Spawnen eines Steins
+            SpawnObject(stonePrefab, playerTransform.forward);
+            stoneTimer = 1f; // Zurücksetzen des Timers
+        }
+
+        // Aktualisiere die vorherige Spielerposition
+        previousPlayerPosition = playerTransform.position;
     }
 
+    // Methode zum Spawnen eines Objekts
     void SpawnObject(GameObject prefab, Vector3 direction)
     {
-        // Berechnen der Position, um das Objekt zu spawnen
-        Vector3 spawnPosition = playerTransform.position + direction * 10f; // Alle 10 Felder vor dem Spieler spawnen
+        // Erhöhe den Offset
+        Offset++;
+
+        // Berechne die Spawnposition basierend auf der Spielerposition und der Richtung
+        Vector3 spawnPosition = playerTransform.position + new Vector3((Random.Range(0, 2) * 2 - 1) * (direction.x * 10 + Offset), 0f, direction.z * 10 + Offset);
+        spawnPosition.y = 0f; // Setze die y-Koordinate auf 0, um Objekte auf dem Boden zu spawnen
+
+        // Instanziere das Objekt an der berechneten Position
         GameObject newObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
 
-        // Überprüfen, ob das Objekt zu weit entfernt ist und es gegebenenfalls zerstören
-        if (Vector3.Distance(playerTransform.position, newObject.transform.position) > spawnDistanceThreshold)
+        // Zufällige Rotation um die x- und z-Achse
+        float randomXRotation = Random.Range(0f, 360f);
+        float randomZRotation = Random.Range(0f, 360f);
+        newObject.transform.Rotate(randomXRotation, 0f, randomZRotation);
+
+        // Füge das gespawnte Objekt der Liste hinzu
+        spawnedObjects.Add(newObject);
+
+        // Überprüfe, ob die maximale Anzahl an Objekten überschritten wurde
+        if (spawnedObjects.Count > 30)
         {
-            Destroy(newObject);
+            // Zerstöre das älteste Objekt in der Liste
+            Destroy(spawnedObjects[0]);
+            spawnedObjects.RemoveAt(0);
         }
     }
+
 }
