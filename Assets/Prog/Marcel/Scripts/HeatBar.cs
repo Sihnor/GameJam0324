@@ -10,10 +10,15 @@ public class HeatBar : MonoBehaviour
 
     private void Awake()
     {
+        //EventManager.Instance.FOnHeatChange += UpdateHeatBar;
+    }
+
+    private void Start()
+    {
         EventManager.Instance.FOnHeatChange += UpdateHeatBar;
     }
 
-       private void UpdateHeatBar(float heat)
+    private void UpdateHeatBar(float heat)
         {
             this.HeatBarImage.fillAmount = heat / 100;
         }

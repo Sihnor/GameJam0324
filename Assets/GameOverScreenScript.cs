@@ -20,16 +20,25 @@ public class GameOverScreenScript : MonoBehaviour
     
     private void OpenMainMenu()
     {
+        PlayAudio();
+        
         SceneLoader.Instance.LoadScene(ESceneIndex.MainScene);
     }
     
     private void ExitGame()
     {
+        PlayAudio();
+        
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
         Application.Quit();
         #endif
+    }
+    
+    private void PlayAudio()
+    {
+        GetComponent<AudioSource>().Play();
     }
     
     private void ShowGameOverScreen()
