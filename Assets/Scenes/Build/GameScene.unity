@@ -456,6 +456,100 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 205063331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &232179353
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 111271734313148344, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: treePrefab
+      value: 
+      objectReference: {fileID: 7396777454329852461, guid: 549566b65fee11ad18bdce5ba9e21ec8,
+        type: 3}
+    - target: {fileID: 111271734313148344, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: stonePrefab
+      value: 
+      objectReference: {fileID: 1405972767296014286, guid: 2211aa7f18abde17d8ab18aedadadf48,
+        type: 3}
+    - target: {fileID: 111271734313148344, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: campfirePrefab
+      value: 
+      objectReference: {fileID: 6886553052877596719, guid: 37fdbe14305cddd24abb4a550ef4b709,
+        type: 3}
+    - target: {fileID: 111271734313148344, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1662105004}
+    - target: {fileID: 2462800880097025859, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_Name
+      value: ObjectGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256534633696663530, guid: ae8c8ba201728ca2db8243f9e69219a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 4996952371458761579, guid: ae8c8ba201728ca2db8243f9e69219a0, type: 3}
+    - {fileID: 2417665137834431689, guid: ae8c8ba201728ca2db8243f9e69219a0, type: 3}
+    - {fileID: 8323762097028466941, guid: ae8c8ba201728ca2db8243f9e69219a0, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae8c8ba201728ca2db8243f9e69219a0, type: 3}
 --- !u!1 &234078845
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SnowStorm
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566818436111568244, guid: ee1e4f0e3eb6f66c0bea44e330f9165d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9202496445885007837, guid: ee1e4f0e3eb6f66c0bea44e330f9165d,
         type: 3}
@@ -855,12 +954,12 @@ PrefabInstance:
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 409615992198474485, guid: 238055060d388e500a4b7de045baf8b8,
         type: 3}
@@ -902,6 +1001,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 497804550714821565, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 790742342444116007, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491357893260685909, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491357893260685909, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491357893260685909, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491357893260685909, guid: 238055060d388e500a4b7de045baf8b8,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -922,3 +1051,4 @@ SceneRoots:
   - {fileID: 621819688}
   - {fileID: 1662105003}
   - {fileID: 492749521}
+  - {fileID: 232179353}

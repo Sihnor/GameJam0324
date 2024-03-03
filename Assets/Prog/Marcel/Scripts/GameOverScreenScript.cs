@@ -46,7 +46,6 @@ public class GameOverScreenScript : MonoBehaviour
     
     private void ShowGameOverScreen()
     {
-        Debug.Log("Game Over");
         this.GameOverScreen.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
