@@ -14,17 +14,24 @@ public class GameOverScreenScript : MonoBehaviour
     {
         this.MainMenuButton.onClick.AddListener(OpenMainMenu);
         this.ExitButton.onClick.AddListener(ExitGame);
-        
-        EventManager.Instance.FOnGameOver += ShowGameOverScreen;
     }
-    
+
+    private void Start()
+    {
+       EventManager.Instance.FOnGameOver += ShowGameOverScreen;
+    }
+
     private void OpenMainMenu()
     {
+        PlayAudio();
+        
         SceneLoader.Instance.LoadScene(ESceneIndex.MainScene);
     }
     
     private void ExitGame()
     {
+        PlayAudio();
+        
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
@@ -32,8 +39,14 @@ public class GameOverScreenScript : MonoBehaviour
         #endif
     }
     
+    private void PlayAudio()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    
     private void ShowGameOverScreen()
     {
+        Debug.Log("Game Over");
         this.GameOverScreen.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
