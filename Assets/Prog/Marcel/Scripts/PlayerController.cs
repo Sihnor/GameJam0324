@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float MouseXSensitivity = 1.0f;
-    [SerializeField] private float MouseYSensitivity = 1.0f;
-    [SerializeField] private float ControllerXSensitivity = 1.0f;
-    [SerializeField] private float ControllerYSensitivity = 1.0f;
+    [SerializeField] private List<AudioClip> FootstepSounds;
+    private AudioSource FootstepPlayer;
+    private Random RandomFootstep = new Random();
+    
+    private float MouseXSensitivity = 0.1f;
+    private float MouseYSensitivity = 0.1f;
+    private float ControllerXSensitivity = 1.0f;
+    private float ControllerYSensitivity = 1.0f;
     [SerializeField] private float MovementSpeed = 1.0f;
 
     private InputAction MoveAction;
@@ -27,9 +32,10 @@ public class PlayerController : MonoBehaviour
         this.MoveAction = GetComponent<PlayerInput>().currentActionMap.FindAction("MoveKeyboard");
         this.LookMouseAction = GetComponent<PlayerInput>().currentActionMap.FindAction("LookMouse");
 
+        this.FootstepPlayer = GetComponent<AudioSource>();
 
         Cursor.lockState = CursorLockMode.Locked;
-
+        Cursor.visible = false;
     }
 
     // Start is called before the first frame update
@@ -46,9 +52,17 @@ public class PlayerController : MonoBehaviour
 
     private void Move(InputAction.CallbackContext ctx)
     {
+        
+        
         this.MoveDirection = ctx.ReadValue<Vector2>();
         this.MoveDirection.x *= this.MovementSpeed;
         this.MoveDirection.y *= this.MovementSpeed;
+    }
+    
+    private void PlaySound()
+    {
+        this.FootstepPlayer.clip = this.FootstepSounds[this.RandomFootstep.Next(0, this.FootstepSounds.Count)];
+        this.FootstepPlayer.Play();
     }
 
     private void Look(InputAction.CallbackContext ctx, float xSensitivity, float ySensitivity)
@@ -80,7 +94,13 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 velocity = this.MoveDirection.x * transform.right + this.MoveDirection.y * transform.forward;
-
+        
+        if (velocity.magnitude > 0.1 && !this.FootstepPlayer.isPlaying)
+        {
+            this.PlaySound();
+        }
+        
+        
         this.PlayerRigidbody.AddForce(velocity);
     }
 }
