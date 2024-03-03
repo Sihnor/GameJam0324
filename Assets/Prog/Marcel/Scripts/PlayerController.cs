@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Animator animator = GetComponent<Animator>();
+        animator.enabled = false;
+        
         this.MoveAction = GetComponent<PlayerInput>().currentActionMap.FindAction("MoveKeyboard");
         this.LookMouseAction = GetComponent<PlayerInput>().currentActionMap.FindAction("LookMouse");
 
@@ -108,7 +111,8 @@ public class PlayerController : MonoBehaviour
         this.MoveAction.Disable();
         this.LookMouseAction.Disable();
 
-        var animator = GetComponent<Animator>();
+        Animator animator = GetComponent<Animator>();
+        animator.enabled = true;
         animator.SetBool("IsDead", true);
     }
 }
