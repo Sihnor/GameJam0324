@@ -18,6 +18,8 @@ public class HeatBar : MonoBehaviour
     private bool Reached75 = false;
     private bool Reached50 = false;
     private bool Reached25 = false;
+    
+    private bool GameOver = false;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class HeatBar : MonoBehaviour
     private void Start()
     {
         EventManager.Instance.FOnHeatChange += UpdateHeatBar;
+        EventManager.Instance.FOnGameOver += OnGameOver;
     }
 
     private void UpdateHeatBar(float heat)
@@ -77,9 +80,14 @@ public class HeatBar : MonoBehaviour
 
     private void PlaySound()
     {
-        if (this.BreathSoundPlayer.isPlaying) return;
+        if (this.BreathSoundPlayer.isPlaying || this.GameOver) return;
         
         this.BreathSoundPlayer.clip = this.BreathSounds[this.RandomSound.Next(0, this.BreathSounds.Count)];
         this.BreathSoundPlayer.Play();
+    }
+    
+    private void OnGameOver()
+    {
+        this.GameOver = true;
     }
 }
