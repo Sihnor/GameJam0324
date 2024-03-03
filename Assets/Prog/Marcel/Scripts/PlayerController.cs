@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
         this.MoveAction.canceled += ctx => this.MoveDirection = Vector2.zero;
 
         this.PlayerRigidbody = GetComponentInChildren<Rigidbody>();
+        
+        EventManager.Instance.FOnGameOver += OnGameOver;
     }
 
     private void Move(InputAction.CallbackContext ctx)
     {
-        
-        
         this.MoveDirection = ctx.ReadValue<Vector2>();
         this.MoveDirection.x *= this.MovementSpeed;
         this.MoveDirection.y *= this.MovementSpeed;
@@ -100,7 +100,15 @@ public class PlayerController : MonoBehaviour
             this.PlaySound();
         }
         
-        
         this.PlayerRigidbody.AddForce(velocity);
+    }
+    
+    private void OnGameOver()
+    {
+        this.MoveAction.Disable();
+        this.LookMouseAction.Disable();
+
+        var animator = GetComponent<Animator>();
+        animator.SetBool("IsDead", true);
     }
 }
