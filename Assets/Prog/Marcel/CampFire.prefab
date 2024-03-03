@@ -19431,6 +19431,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeatSource: {fileID: 2815911650165682313}
   ParticleSystem: {fileID: 2537840483840003045}
+  FireParticlesOne: {fileID: 8041422831091446851}
+  FireParticlesTwo: {fileID: 7960834061911891140}
+  FireParticlesThree: {fileID: 4384263531033527891}
   Duration: 10
 --- !u!82 &4849625589316059770
 AudioSource:

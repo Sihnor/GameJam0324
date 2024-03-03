@@ -7,6 +7,9 @@ public class CampFireDuration : MonoBehaviour
 {
     [SerializeField] private GameObject HeatSource;
     [SerializeField] private GameObject ParticleSystem;
+    [SerializeField] private ParticleSystem FireParticlesOne;
+    [SerializeField] private ParticleSystem FireParticlesTwo;
+    [SerializeField] private ParticleSystem FireParticlesThree;
     [SerializeField] private float Duration = 10.0f;
     private float TimeLeft;
     private bool IsActivated;
@@ -16,6 +19,15 @@ public class CampFireDuration : MonoBehaviour
     private void Awake()
     {
         this.FireSound = GetComponent<AudioSource>();
+        
+        ParticleSystem.MainModule particleMain = this.FireParticlesOne.main;
+        particleMain.duration = this.Duration - 3;
+        
+        particleMain = this.FireParticlesTwo.main;
+        particleMain.duration = this.Duration - 3;
+        
+        particleMain = this.FireParticlesThree.main;
+        particleMain.duration = this.Duration - 3;
     }
 
     // Start is called before the first frame update
@@ -29,6 +41,7 @@ public class CampFireDuration : MonoBehaviour
         if (this.IsActivated) return;
 
         this.TimeLeft = this.Duration;
+        
         this.IsActivated = true;
         this.HeatSource.SetActive(true);
         this.ParticleSystem.SetActive(true);
