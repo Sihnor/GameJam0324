@@ -19,20 +19,31 @@ public class MainMenuScript : MonoBehaviour
 
     private void StartGame()
     {
+        PlayAudio();
+        
         SceneLoader.Instance.LoadScene(ESceneIndex.GameScene);
     }
     
     private void OpenSettings()
     {
+        PlayAudio();
+        
         SceneLoader.Instance.LoadScene(ESceneIndex.SettingsScene);
     }
     
     private void ExitGame()
     {
+        PlayAudio();
+        
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
         Application.Quit();
         #endif
+    }
+    
+    private void PlayAudio()
+    {
+        GetComponent<AudioSource>().Play();
     }
 }

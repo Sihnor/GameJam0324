@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1173933508851079306}
   - component: {fileID: 8929942211693206058}
   - component: {fileID: 3855339276312743895}
-  - component: {fileID: 2483975814535620792}
+  - component: {fileID: 437165703594699557}
   m_Layer: 0
   m_Name: SnowPlane
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2483975814535620792
+--- !u!114 &437165703594699557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127703771243086252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 845621a461e25744b82ef41cc78ecc3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 33570419b09ea4a4ca2693896f5a089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 50
-  zSize: 50
+  m_offsetSpeed: 0.01
