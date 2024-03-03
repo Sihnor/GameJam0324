@@ -163,6 +163,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeatBarImage: {fileID: 8750667719592008759}
+  BreathSounds:
+  - {fileID: 8300000, guid: 47e3f6e0bf18972aaa51d97de4d338a4, type: 3}
+  - {fileID: 8300000, guid: 4f6386d3bfe10735ab16f7c66f8454f3, type: 3}
+  - {fileID: 8300000, guid: c7606e34d3f42b090a89157040266421, type: 3}
+  - {fileID: 8300000, guid: 6d350e1607339236da13438ed283349c, type: 3}
+  - {fileID: 8300000, guid: 03cbe5aa8b8a6c0849e5039cfc592691, type: 3}
+  - {fileID: 8300000, guid: fe512864fe6f4b3f3b2db38b6d4eaf5b, type: 3}
+  - {fileID: 8300000, guid: be2b183eaf326d7b9b3dc11d81142a3b, type: 3}
+  - {fileID: 8300000, guid: d6baa5d5fca959b5f9b032c620d282dc, type: 3}
+  - {fileID: 8300000, guid: 906f1a5409f5512beb1ca16c2c4a6da4, type: 3}
+  - {fileID: 8300000, guid: f220d8001743c7811b51f7808005077f, type: 3}
 --- !u!82 &977264131870802113
 AudioSource:
   m_ObjectHideFlags: 0
