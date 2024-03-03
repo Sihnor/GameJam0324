@@ -14,10 +14,13 @@ public class GameOverScreenScript : MonoBehaviour
     {
         this.MainMenuButton.onClick.AddListener(OpenMainMenu);
         this.ExitButton.onClick.AddListener(ExitGame);
-        
-        EventManager.Instance.FOnGameOver += ShowGameOverScreen;
     }
-    
+
+    private void Start()
+    {
+       EventManager.Instance.FOnGameOver += ShowGameOverScreen;
+    }
+
     private void OpenMainMenu()
     {
         PlayAudio();
@@ -43,6 +46,7 @@ public class GameOverScreenScript : MonoBehaviour
     
     private void ShowGameOverScreen()
     {
+        Debug.Log("Game Over");
         this.GameOverScreen.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
