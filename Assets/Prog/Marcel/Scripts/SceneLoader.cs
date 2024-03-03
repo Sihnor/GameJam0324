@@ -9,7 +9,6 @@ public enum ESceneIndex
     MainScene = 0,
     SettingsScene = 1,
     GameScene = 2,
-    GameOverScreen = 3
 }
 
 public class SceneLoader : MonoBehaviour
